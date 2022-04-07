@@ -3,8 +3,10 @@ import { createContext, useContext, useReducer } from "react";
 const ExpenseContext = createContext([]);
 const ExpenseDispatchContext = createContext(null);
 
+const initialExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
 const Provider = ({ children }) => {
-    const [expenses, dispatch] = useReducer(expenseReducer, []);
+    const [expenses, dispatch] = useReducer(expenseReducer, initialExpenses);
 
     return (
         <ExpenseContext.Provider value={expenses}>
@@ -23,21 +25,31 @@ export const useExpenseDispatch = () => {
     return useContext(ExpenseDispatchContext);
 };
 
+const storeExpenses = (expenses) => {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+};
+
 const expenseReducer = (expenses, action) => {
     switch (action.type) {
         case "add": {
-            return [...expenses, action.item];
+            const newExpenses = [...expenses, action.item];
+            storeExpenses(newExpenses);
+            return newExpenses;
         }
         case "edit": {
-            return expenses.map((e) => {
+            const newExpenses = expenses.map((e) => {
                 if (e.id === action.id) {
                     return action.item;
                 }
                 return e;
             });
+            storeExpenses(newExpenses);
+            return newExpenses;
         }
         case "delete": {
-            return expenses.filter((e) => e.id !== action.id);
+            const newExpenses = expenses.filter((e) => e.id !== action.id);
+            storeExpenses(newExpenses);
+            return newExpenses;
         }
         default: {
             throw Error("Unknown action: " + action.type);
