@@ -6,8 +6,8 @@ const AddNew = () => {
     const dispatch = useExpenseDispatch();
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
-    let titleRef = useRef(null);
-    let amountRef = useRef(null);
+    const titleRef = useRef(null);
+    const amountRef = useRef(null);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -45,7 +45,6 @@ const AddNew = () => {
                     <label htmlFor="text">Text</label>
                     <input
                         ref={titleRef}
-                        type="text"
                         id="text"
                         value={title}
                         onChange={handleTitleChange}

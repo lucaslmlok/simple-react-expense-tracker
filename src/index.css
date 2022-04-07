@@ -36,7 +36,8 @@ p {
     margin: 0;
 }
 
-ul {
+ul,
+menu {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -126,13 +127,14 @@ input {
 
 .history__item {
     display: flex;
-    margin: 10px 0;
-    padding: 10px 14px;
+    align-items: center;
+    margin: 12px 0;
+    padding: 10px 16px;
+    min-height: 60px;
     background-color: white;
     box-shadow: 0 0 4px #bbb;
     border-radius: 4px;
     border-right: 6px solid #46c35a;
-    cursor: pointer;
 }
 
 .history__item--expense {
@@ -141,6 +143,32 @@ input {
 
 .history__title {
     flex: 1;
+}
+
+.history__menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 14px;
+}
+
+.history__menu li {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.history__menu li:hover {
+    opacity: 1;
+}
+
+.history__input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.history__input--amount {
+    width: 100px;
 }
 
 .add-new__field {

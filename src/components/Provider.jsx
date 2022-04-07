@@ -38,7 +38,7 @@ const expenseReducer = (expenses, action) => {
         }
         case "edit": {
             const newExpenses = expenses.map((e) => {
-                if (e.id === action.id) {
+                if (e.id === action.item.id) {
                     return action.item;
                 }
                 return e;
