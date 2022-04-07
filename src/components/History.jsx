@@ -107,10 +107,10 @@ const HistoryItem = ({ item }) => {
                 </div>
                 <menu className="history__menu">
                     <li onClick={handleSave}>
-                        <VscSave title="Save" size={21} />
+                        <VscSave title="Save" size={24} />
                     </li>
                     <li onClick={handleDiscard}>
-                        <VscDiscard title="Discard" size={21} />
+                        <VscDiscard title="Discard" size={24} />
                     </li>
                 </menu>
             </li>
@@ -123,10 +123,10 @@ const HistoryItem = ({ item }) => {
             <p className="history__amount">{displayAmount(amount)}</p>
             <menu className="history__menu">
                 <li onClick={handleEdit}>
-                    <VscEdit title="Edit" size={21} />
+                    <VscEdit title="Edit" size={24} />
                 </li>
                 <li onClick={handleDelete}>
-                    <VscClose title="Delete" size={21} />
+                    <VscClose title="Delete" size={24} />
                 </li>
             </menu>
         </li>
