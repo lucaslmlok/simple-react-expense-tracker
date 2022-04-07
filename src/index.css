@@ -1,13 +1,148 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+html {
+    font-family: "Roboto", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+}
+
+section {
+    margin: 30px 0 20px;
+}
+
+h1 {
+    margin: 16px 0 40px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin: 0.4em 0;
+    padding: 0.25em 0;
+    border-bottom: 1px solid #aaa;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6em;
+    margin: 4px 0;
+    background-color: #9c89fc;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+input {
+    outline: none;
+    font: inherit;
+    width: 100%;
+    padding: 0.5em 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.balance__table {
+    display: flex;
+    padding: 18px;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 0 8px #ccc;
+    border-radius: 4px;
+}
+
+.balance__cell {
+    flex: 1;
+    text-align: center;
+}
+
+.balance__cell:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.balance__label {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.balance__amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.balance__amount--sub {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 4px 0;
+}
+
+.balance__cell--income .balance__amount {
+    color: #46c35a;
+}
+
+.balance__cell--expense .balance__amount {
+    color: #d33939;
+}
+
+.history__list {
+    margin: 18px 0;
+}
+
+.history__item {
+    display: flex;
+    margin: 10px 0;
+    padding: 10px 14px;
+    background-color: white;
+    box-shadow: 0 0 4px #bbb;
+    border-radius: 4px;
+    border-right: 6px solid #46c35a;
+    cursor: pointer;
+}
+
+.history__item--expense {
+    border-right-color: #d33939;
+}
+
+.history__title {
+    flex: 1;
+}
+
+.add-new__field {
+    margin: 14px 0;
 }
