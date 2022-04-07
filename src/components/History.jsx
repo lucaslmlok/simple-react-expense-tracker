@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { VscEdit, VscClose, VscSave, VscDiscard } from "react-icons/vsc";
+import { format } from "date-fns";
 import { useExpense, useExpenseDispatch } from "./Provider";
 
 const displayAmount = (amount) => {
@@ -16,11 +17,15 @@ const History = () => {
     return (
         <section>
             <h2>History</h2>
-            <ul className="history__list">
-                {expenses.map((e) => (
-                    <HistoryItem key={e.id} item={e} />
-                ))}
-            </ul>
+            {expenses.length ? (
+                <ul className="history__list">
+                    {expenses.map((e) => (
+                        <HistoryItem key={e.id} item={e} />
+                    ))}
+                </ul>
+            ) : (
+                <div className="history__empty">No History</div>
+            )}
         </section>
     );
 };
@@ -71,6 +76,7 @@ const HistoryItem = ({ item }) => {
                 id: item.id,
                 title: title,
                 amount: +amount,
+                date: item.date,
             },
         });
         setIsEditing(false);
@@ -113,6 +119,11 @@ const HistoryItem = ({ item }) => {
                         <VscDiscard title="Discard" size={24} />
                     </li>
                 </menu>
+                {item.date && (
+                    <small className="history__date">
+                        {format(item.date, "yyyy/MM/dd")}
+                    </small>
+                )}
             </li>
         );
     }
@@ -129,6 +140,11 @@ const HistoryItem = ({ item }) => {
                     <VscClose title="Delete" size={24} />
                 </li>
             </menu>
+            {item.date && (
+                <small className="history__date">
+                    {format(item.date, "yyyy/MM/dd")}
+                </small>
+            )}
         </li>
     );
 };

@@ -4,6 +4,9 @@ const ExpenseContext = createContext([]);
 const ExpenseDispatchContext = createContext(null);
 
 const initialExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+initialExpenses.forEach((e) => {
+    e.date = e.date ? new Date(e.date) : undefined;
+});
 
 const Provider = ({ children }) => {
     const [expenses, dispatch] = useReducer(expenseReducer, initialExpenses);

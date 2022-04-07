@@ -1,13 +1,17 @@
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import DatePicker from "react-datepicker";
+import { parseISO } from "date-fns";
 import { useExpenseDispatch } from "./Provider";
 
 const AddNew = () => {
     const dispatch = useExpenseDispatch();
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
+    const [date, setDate] = useState(new Date());
     const titleRef = useRef(null);
     const amountRef = useRef(null);
+    const dateRef = useRef(null);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -15,6 +19,10 @@ const AddNew = () => {
 
     const handleAmountChange = (e) => {
         setAmount(e.target.value);
+    };
+
+    const handleDateChange = (date) => {
+        setDate(date);
     };
 
     const handleSubmit = (e) => {
@@ -25,12 +33,17 @@ const AddNew = () => {
         if (!amount) {
             return amountRef.current.focus();
         }
+        if (!date) {
+            return dateRef.current.setFocus();
+        }
+
         dispatch({
             type: "add",
             item: {
                 id: uuidv4(),
                 title: title,
                 amount: +amount,
+                date: date,
             },
         });
         setTitle("");
@@ -66,7 +79,17 @@ const AddNew = () => {
                         placeholder="Enter amount..."
                     />
                 </div>
-                <button onClick={handleSubmit}>Add transaction</button>
+                <div className="add-new__field">
+                    <label htmlFor="date">Date</label>
+                    <DatePicker
+                        ref={dateRef}
+                        selected={date}
+                        onChange={handleDateChange}
+                    />
+                </div>
+                <button className="btn" onClick={handleSubmit}>
+                    Add transaction
+                </button>
             </form>
         </section>
     );
